@@ -43,13 +43,10 @@ async def slow():
             extra={"tags": {"service": "my-service"}},
         )
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, "Internal server error")
-    elif generated_num == 2:
+    if generated_num == 2:
         await delay_request.action()
         logger.warning(
             "Slow response", 
             extra={"tags": {"service": "my-service"}},
         )
-        return {"message": "slow route response"}
-    else:
-        pass
     return {"message": "fast response"}
